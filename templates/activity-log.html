@@ -3,172 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <title>Farm Tech System - Activity Log</title>
   <!-- Include necessary CSS and JavaScript files -->
+  <style>
+    body {
+      background-image: url('https://media.istockphoto.com/id/136546538/photo/tea-plantation.jpg?s=612x612&w=0&k=20&c=CMMc6rLPJTvuhwYhj2Q7XjNT4acTi5iUiAGnHsgOPkw='); /* Specify the path to your image */
+      background-size: cover; /* Cover the entire background */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      align-items: center;
+      justify-content: center;
+      color: #fff; /* Ensuring the text is readable on a dark background */
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * 7));
+      }
+    }
+
+    .slider {
+      height: 200px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+      width: auto;
+      padding: 0 30px;
+    }
+
+    .logo {
+      font-family: 'Poppins';
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .navbar {
+      margin-top: 20px;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      color: #AC3B61;
+      font-weight: bolder;
+      font-size: larger;
+      text-decoration: none;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .nav-links li:hover a {
+      background: rgb(255, 255, 255);
+      color: black;
+      padding: .25rem .5rem;
+      transition: all ease-in 300ms;
+      border-radius: 25px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .dream {
+      text-align: center;
+    }
+
+    .dream .item {
+      margin: 10px;
+    }
+
+    .dream img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .dream .item p {
+      font-size: 20px; /* Increased font size */
+      color: red; /* Changed text color to red */
+      margin-top: 10px;
+    }
+
+    /* Additional styles from the second file */
+    .animate-charcter {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(
+        -225deg,
+        #231557 0%,
+        #44107a 29%,
+        #ff1361 67%,
+        #fff800 100%
+      );
+      background-size: auto auto;
+      background-clip: border-box;
+      background-size: 200% auto;
+      color: #AC3B61;
+      background-clip: text;
+      text-justify: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textclip 2s linear infinite;
+      display: inline-block;
+      font-size: 80px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+
+    @keyframes textclip {
+      to {
+        background-position: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1 class="animate-charcter">Farm Tech System - Activity-Log</h1>
     <!-- Navigation menu -->
     <nav class="navbar">
-        <ul class="nav-links">
-          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="sensors.html"><i class="fas fa-cogs"></i> Sensors</a></li>
-          <li><a href="zones.html"><i class="fas fa-envelope"></i> Zones</a></li>
-        </ul>
-      </nav>
-      
-
-      <style>
-        /* Added CSS styles */
-        .animate-charcter {
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-image: linear-gradient(
-            -225deg,
-            #231557 0%,
-            #44107a 29%,
-            #ff1361 67%,
-            #fff800 100%
-          );
-          background-size: auto auto;
-          background-clip: border-box;
-          background-size: 200% auto;
-          color: #AC3B61;
-          background-clip: text;
-          text-justify: transparent;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: textclip 2s linear infinite;
-          display: inline-block;
-          font-size: 80px;
-          font-family: Georgia, 'Times New Roman', Times, serif;
-          font-weight: bold;
-        }
-        
-        @keyframes textclip {
-          to {
-            background-position: center;
-          }
-        }
-        
-        * {
-          margin-bottom: 20px;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        body {
-          align-items: center;
-          justify-content: center;
-          background: url('backgrnd.jpg') no-repeat center center fixed;
-          background-size: cover;
-          color: #fff; /* Ensuring the text is readable on a dark background */
-        }
-        
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-250px * 7));
-          }
-        }
-        
-        .slider {
-          height: 200px;
-          margin: auto;
-          overflow: hidden;
-          position: relative;
-          width: auto;
-          padding: 0 30px;
-        }
-    
-        .logo {
-          font-family: 'Poppins';
-          font-size: 24px;
-          text-align: center;
-        }
-        
-        .navbar {
-          margin-top: 20px;
-        }
-        
-        .nav-links {
-          list-style: none;
-          padding: 0;
-          display: flex;
-          justify-content: center;
-        }
-        
-        .nav-links li {
-          margin: 0 15px;
-        }
-        
-        .nav-links a {
-          color: #AC3B61;
-          font-weight: bolder;
-          font-size: larger;
-          text-decoration: none;
-        }
-        
-        h2 {
-          font-size: 24px;
-          margin-bottom: 10px;
-        }
-        
-        p {
-          line-height: 1.6;
-        }
-        
-        .nav-links li:hover a {
-          background: rgb(255, 255, 255);
-          color: black;
-          padding: .25rem .5rem;
-          transition: all ease-in 300ms;
-          border-radius: 25px;
-        }
-    
-        .container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .box {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        
-        .dream {
-          text-align: center;
-        }
-    
-        .dream .item {
-          margin: 10px;
-        }
-    
-        .dream img {
-          display: block;
-          margin: 0 auto;
-        }
-    
-        .dream .item p {
-          font-size: 20px; /* Increased font size */
-          color: red; /* Changed text color to red */
-          margin-top: 10px;
-        }
-    
-      </style>
-      
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="sensors"><i class="fas fa-cogs"></i> Sensors</a></li>
+        <li><a href="zones"><i class="fas fa-envelope"></i> Zones</a></li>
+      </ul>
+    </nav>
   </header>
-  
+
   <!-- Activity log content -->
-  <section>
-    <!-- Add activity log content here -->
+  <section id="welcome-section">
+    <h2>IR Value Distribution</h2>
+    <!-- Display dynamically generated pie chart -->
+    <img src="data:image/png;base64,{{ ir_plot_data }}" alt="IR Value Distribution">
+
+    <h2>Average Closeness of Pests over Time</h2>
+    <!-- Display dynamically generated line plot -->
+    <img src="data:image/png;base64,{{ distance_plot_data }}" alt="Average Closeness of Pests over Time">
+
+    <!-- Other activity log content -->
   </section>
 
   <!-- Footer -->
