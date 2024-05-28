@@ -4,278 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Farm Tech System - Zones</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    /* Added CSS styles */
-    .animate-charcter {
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-image: linear-gradient(
-        -225deg,
-        #231557 0%,
-        #44107a 29%,
-        #ff1361 67%,
-        #fff800 100%
-      );
-      background-size: auto auto;
-      background-clip: border-box;
-      background-size: 200% auto;
-      color: #AC3B61;
-      background-clip: text;
-      text-justify: transparent;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textclip 2s linear infinite;
-      display: inline-block;
-      font-size: 80px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-weight: bold;
-    }
-    
-    @keyframes textclip {
-      to {
-        background-position: center;
-      }
-    }
-    
-    * {
-      margin-bottom: 20px;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      align-items: center;
-      justify-content: center;
-      background: url('backgrnd.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff; /* Ensuring the text is readable on a dark background */
-    }
-    
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-250px * 7));
-      }
-    }
-    
-    .slider {
-      height: 200px;
-      margin: auto;
-      overflow: hidden;
-      position: relative;
-      width: auto;
-      padding: 0 30px;
-    }
-
-    .logo {
-      font-family: 'Poppins';
-      font-size: 24px;
-      text-align: center;
-    }
-    
-    .navbar {
-      margin-top: 20px;
-    }
-    
-    .nav-links {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
-    
-    .nav-links li {
-      margin: 0 15px;
-    }
-    
-    .nav-links a {
-      color: #AC3B61;
-      font-weight: bolder;
-      font-size: larger;
-      text-decoration: none;
-    }
-    
-    h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    
-    p {
-      line-height: 1.6;
-    }
-    
-    .nav-links li:hover a {
-      background: rgb(255, 255, 255);
-      color: black;
-      padding: .25rem .5rem;
-      transition: all ease-in 300ms;
-      border-radius: 25px;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .box {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .dream {
-      text-align: center;
-    }
-
-    .dream .item {
-      margin: 10px;
-    }
-
-    .dream img {
-      display: block;
-      margin: 0 auto;
-    }
-
-    .dream .item p {
-      font-size: 20px; /* Increased font size */
-      color: red; /* Changed text color to red */
-      margin-top: 10px;
-    }
-
-    #map, #zoneMap {
-      height: 500px;
-      width: 80%;
-      margin: 20px auto;
-    }
-
-  </style>
+  <!-- Include necessary CSS and JavaScript files -->
 </head>
 <body>
   <header>
-    <h1 class="animate-charcter">Farm Tech System - Zones</h1>
+    <h1>Zones</h1>
     <!-- Navigation menu -->
     <nav class="navbar">
         <ul class="nav-links">
-          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="sensors.html"><i class="fas fa-cogs"></i> Sensors</a></li>
-          <li><a href="activity-log.html"><i class="fas fa-envelope"></i> Activity Log</a></li>
+          <li><a href="index"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="sensors"><i class="fas fa-cogs"></i> Sensors</a></li>
+          <li><a href="activity-log"><i class="fas fa-envelope"></i> Activity Log</a></li>
         </ul>
       </nav>
+      
+      
   </header>
   
   <!-- Zones content -->
   <section>
-    <div id="map"></div>
-    <div id="zoneMap"></div>
+    <!-- Add zones content here -->
   </section>
 
   <!-- Footer -->
   <footer>
     <!-- Footer content -->
   </footer>
-
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-  <script>
-    var map = L.map('map').setView([10.3269, 76.9512], 16); // Increased zoom level for closer view
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Add a marker for the tea estate
-    L.marker([10.3269, 76.9512]).addTo(map)
-      .bindPopup('Tea Estate in Valparai Hills')
-      .openPopup();
-
-    // Define the coordinates of the boundary of the tea estate
-    var estateBoundary = [
-      [10.3275, 76.9500],
-      [10.3272, 76.9510],
-      [10.3270, 76.9520],
-      [10.3268, 76.9525],
-      [10.3265, 76.9527],
-      [10.3260, 76.9525],
-      [10.3255, 76.9520],
-      [10.3252, 76.9515],
-      [10.3250, 76.9510],
-      [10.3252, 76.9505],
-      [10.3255, 76.9500],
-      [10.3260, 76.9495],
-      [10.3265, 76.9492],
-      [10.3270, 76.9495]
-    ];
-
-    // Add the boundary as a polygon
-    L.polygon(estateBoundary, {color: 'red'}).addTo(map)
-      .bindPopup('Tea Estate Boundary');
-
-    // Add a heatmap layer
-    var heat = L.heatLayer([
-      [10.3269, 76.9512, 0.5],  // Example coordinates with intensity
-      [10.3270, 76.9520, 0.6],
-      [10.3280, 76.9530, 0.7]
-    ], {radius: 25}).addTo(map);
-
-    // Additional map for zones
-    var zoneMap = L.map('zoneMap').setView([10.3269, 76.9512], 16);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(zoneMap);
-
-    // Define coordinates for zone boundaries
-    var zone1 = [
-      [10.3280, 76.9500],
-      [10.3280, 76.9515],
-      [10.3270, 76.9515],
-      [10.3270, 76.9500]
-    ];
-
-    var zone2 = [
-      [10.3280, 76.9515],
-      [10.3280, 76.9530],
-      [10.3270, 76.9530],
-      [10.3270, 76.9515]
-    ];
-
-    var zone3 = [
-      [10.3270, 76.9500],
-      [10.3270, 76.9515],
-      [10.3260, 76.9515],
-      [10.3260, 76.9500]
-    ];
-
-    var zone4 = [
-      [10.3270, 76.9515],
-      [10.3270, 76.9530],
-      [10.3260, 76.9530],
-      [10.3260, 76.9515]
-    ];
-
-    // Add zones as polygons
-    L.polygon(zone1, {color: 'blue'}).addTo(zoneMap).bindPopup('Zone 1');
-    L.polygon(zone2, {color: 'green'}).addTo(zoneMap).bindPopup('Zone 2');
-    L.polygon(zone3, {color: 'yellow'}).addTo(zoneMap).bindPopup('Zone 3');
-    L.polygon(zone4, {color: 'orange'}).addTo(zoneMap).bindPopup('Zone 4');
-
-    // Add heatmap layers for zones
-    var zoneHeatData = [
-      // Example heat data for each zone
-      [10.3275, 76.9505, 0.5],  // Zone 1
-      [10.3275, 76.9525, 0.6],  // Zone 2
-      [10.3265, 76.9505, 0.7],  // Zone 3
-      [10.3265, 76.9525, 0.8]   // Zone 4
-    ];
-
-    L.heatLayer(zoneHeatData, {radius: 25}).addTo(zoneMap);
-
-  </script>
 </body>
 </html>
