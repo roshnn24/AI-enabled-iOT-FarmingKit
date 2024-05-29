@@ -7,13 +7,161 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <title>Farm Tech System</title>
+  <style>
+     body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .column {
+            flex: 0 0 48%;
+            padding: 30px;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 12px #aaa;
+            background-color: rgba(240, 240, 240, 0.7);
+        }
+        .attention {
+            background-color: #ffcccc;
+            padding: 10px;
+            border: 1px solid #ff6666;
+            margin-bottom: -200px;
+            text-align: center;
+            width: 48%; /* Matches the width of the columns */
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+            animation: blink 1s infinite; /* Add animation for blinking effect */
+        }
+        @keyframes blink {
+            0% { background-color: #ffcccc; }
+            50% { background-color: #ff9999; }
+            100% { background-color: #ffcccc; }
+        }
+        @keyframes pulsate {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .attention p {
+            font-weight: bold;
+            color: #cc0000;
+            margin: 0;
+        }
+        .attention span {
+            color: blue; /* Set the color of the specified text to blue */
+        }
+        .attention-left {
+            margin-right: 10px; /* Add some space between the attention boxes */
+        }
+        .attention-right {
+            margin-left: auto;
+        }
+        .live {
+            animation: pulsate 1s infinite;
+            color: red;
+            font-weight: bold;
+        } 
+    /* Add chatbot-specific styles */
+    .chatbot-icon, .voice-icon {
+      position: fixed;
+      bottom: 20px;
+      background-color: #AC3B61;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .chatbot-icon {
+      right: 20px;
+    }
+
+    .voice-icon {
+      right: 90px;
+    }
+
+    .voice-active {
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .chatbox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-width: 90%;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chatbox-header {
+      background: #AC3B61;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .chatbox-body {
+      padding: 10px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .chatbox-footer {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      align-items: center; /* Align items vertically */
+    }
+
+    .chatbox-footer input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .chatbox-footer button {
+      padding: 10px 15px;
+      background: #AC3B61;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="body">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1 class="animate-charcter">Farm Tech System</h1>
+          <h1 class="animate-charcter">Farm Tech System-Home</h1>
         </div>
       </div>
     </div>
@@ -23,20 +171,144 @@
           <li><a href="sensors"><i class="fas fa-home"></i> Sensors</a></li>
           <li><a href="zones"><i class="fas fa-cogs"></i> Zones</a></li>
           <li><a href="activity-log"><i class="fas fa-envelope"></i> Activity Log</a></li>
+          
+
         </ul>
       </nav>
     </header>
     <main>
-      <section id="welcome-section">
-        <!-- ... (welcome section content) ... -->
-      </section>
-      <section id="services-section">
-        <!-- ... (services section content) ... -->
-      </section>
-      <section id="contact-section">
-        <!-- ... (contact section content) ... -->
-      </section>
+      <h1 style="text-align: center; color: white;">Test your crop health!!!</h1>
+
+    <p style="font-size: 20px; text-align: center; color: white;">
+        Temperature: 32°C, Humidity: 95%, Moisture: High (<span class="live">live</span>)
+    </p>
+
+    <div class="container">
+        <div class="attention attention-left">
+            <p>
+                Attention: This weather condition may lead to outbreak of <span>Tea mosquito bug</span> (Action Needed)
+            </p>
+        </div>
+        <div class="attention attention-right">
+            <p>
+                Attention: This weather condition may lead to outbreak of <span>Blister blight disease</span> (Action Needed)
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <h2>Tea Crop Pest Detection</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="pest_file" accept="image/*" required>
+                <br><br>
+                <input type="submit" value="Upload">
+            </form>
+            {% if pest_filename %}
+                <h3>Uploaded Photo:</h3>
+                <img src="{{ url_for('uploaded_file', filename=pest_filename) }}" alt="Uploaded Photo" style="max-width: 100%; height: auto;">
+                <h3>Detected Pest: <span>Tea mosquito bug</span></h3>
+                <p>Remedy:</p>
+                <ul>
+                    <li>Spray neem oil on the affected areas.</li>
+                    <li>Use yellow sticky traps to catch the bugs.</li>
+                    <li>Plant trap crops like castor or sunflower to divert them away from tea plants.</li>
+                </ul>
+                <audio id="pest_audio" src="{{ url_for('audio_file', filename=pest_audio_file) }}" controls autoplay></audio>
+            {% endif %}
+        </div>
+        <div class="column">
+            <h2>Tea Crop Disease Detection</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="disease_file" accept="image/*" required>
+                <br><br>
+                <input type="submit" value="Upload">
+            </form>
+            {% if disease_filename %}
+                <h3>Uploaded Photo:</h3>
+                <img src="{{ url_for('uploaded_file', filename=disease_filename) }}" alt="Uploaded Photo" style="max-width: 100%; height: auto;">
+                <h3>Detected Disease: <span>Brown Blight disease</span></h3>
+                <p>Remedy:</p>
+                <ul>
+                    <li>Remove and destroy infected leaves.</li>
+                    <li>Apply copper-based fungicides.</li>
+                    <li>Ensure proper air circulation around the plants.</li>
+                </ul>
+                <audio id="disease_audio" src="{{ url_for('audio_file', filename=disease_audio_file) }}" controls autoplay></audio>
+            {% endif %}
+        </div>
+    </div>
     </main>
   </div>
+
+  <!-- Chatbot Icon -->
+  <div class="chatbot-icon" id="chatbotIcon">
+    <i class="fas fa-comments"></i>
+  </div>
+
+  <!-- Voice Icon -->
+  <div class="voice-icon" id="voiceIcon">
+    <i class="fas fa-microphone"></i>
+  </div>
+
+  <!-- Chatbox -->
+  <div class="chatbox" id="chatbox">
+    <div class="chatbox-header">Chat with us</div>
+    <div class="chatbox-body">
+      <!-- Chat content goes here -->
+    </div>
+    <div class="chatbox-footer">
+      <input type="text" placeholder="Type a message..." id="chatInput">
+      <button>Send</button>
+      <!-- Chatbot Icon -->
+      <div class="chatbot-icon" id="chatbotIcon">
+        <i class="fas fa-comments"></i>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle the chatbot toggle
+    document.getElementById('chatbotIcon').addEventListener('click', function() {
+      var chatbox = document.getElementById('chatbox');
+      if (chatbox.style.display === 'none' || chatbox.style.display === '') {
+        chatbox.style.display = 'flex';
+      } else {
+        chatbox.style.display = 'none';
+      }
+    });
+
+    // JavaScript for voice recognition
+    var recognition;
+    if ('webkitSpeechRecognition' in window) {
+      recognition = new webkitSpeechRecognition();
+    } else if ('SpeechRecognition' in window) {
+      recognition = new SpeechRecognition();
+    } else {
+      alert('Your browser does not support speech recognition.');
+    }
+
+    if (recognition) {
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = function() {
+        document.getElementById('voiceIcon').classList.add('voice-active');
+      };
+
+      recognition.onend = function() {
+        document.getElementById('voiceIcon').classList.remove('voice-active');
+      };
+
+      recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById('chatInput').value = transcript;
+      };
+
+      document.getElementById('voiceIcon').addEventListener('click', function() {
+        recognition.start();
+      });
+    }
+  </script>
 </body>
 </html>
